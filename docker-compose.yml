@@ -1,0 +1,38 @@
+version: "3.0"
+services:
+     nodejs1:
+         image: verodock/myubussh:latest
+         hostname: nodejs1
+         networks:
+            - ssh-net
+         ports:
+            - 3000:3000
+     nodejs2:
+         image: verodock/myubussh:latest
+         hostname: nodejs2
+         networks:
+            - ssh-net
+         ports:
+            - 4000:4000
+     mongodb:
+         image: verodock/myubussh:latest
+         hostname: mongodb
+         networks:
+            - ssh-net
+         ports:
+            - 27017:27017
+     ansible:
+         image: verodock/myansible:latest
+         command: ["/bin/bash","-c","sshpass -p prueba ssh-copy-id -o 'StrictHostKeyChecking no' root@nodejs1 && sshpass -p prueba ssh-copy-id -o 'StrictHostKeyChecking no' root@nodejs2 && sshpass -p prueba ssh-copy-id -o 'StrictHostKeyChecking no' root@mongodb && /usr/sbin/sshd -D"]
+         hostname: ansible
+         networks:
+            - ssh-net
+         depends_on:
+            - nodejs1
+            - nodejs2
+            - mongodb 
+
+networks:
+  ssh-net:
+
+
