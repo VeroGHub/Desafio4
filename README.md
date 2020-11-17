@@ -6,17 +6,21 @@
 
 - docker-compose.yml 
 
-3. En ese directorio a eleccion ejecute el siguiente comando:
+3. Ejecutar el siguiente comando:
+
+**docker swarm init**
+ 
+4. En ese directorio a eleccion ejecute el siguiente comando:
 
    ***docker stack deploy -c docker-compose.yml (nombre stack)***
 
-4. Conectarse al contenedor ansible que esta en ejecucion.
+5. Conectarse al contenedor ansible que esta en ejecucion.
 
-5. Una vez conectado al contenedor ansible, asegurarse que este posicionado en el directorio /root, luego ejecutar el siguiente comando:
+6. Una vez conectado al contenedor ansible, asegurarse que este posicionado en el directorio /root, luego ejecutar el siguiente comando:
 
    ***ansible-playbook playdesa4.yml***
 
-6. Validar mediante cliente Rest INSOMNIA, que la carga inicial en MongoDB este disponible, mediante estas url:
+7. Validar mediante cliente Rest INSOMNIA, que la carga inicial en MongoDB este disponible, mediante estas url:
 
     - Utilizar Metodo GET
         
@@ -28,7 +32,7 @@
 
 - http://localhost:4000/api/automovil *Este endpoint seleccciona todos los documentos de la coleccion **automovil** desde el contenedor Nodejs2*.
 
-7. Generar nuevos documentos en ambas colecciones **animal y automovil**, utilizar Metodo POST.
+8. Generar nuevos documentos en ambas colecciones **animal y automovil**, utilizar Metodo POST.
 
 - http://localhost:3000/api/animal (NodeJS1)
     Se utiliza el siguiente formato Json:
